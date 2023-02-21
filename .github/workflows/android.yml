@@ -2,9 +2,9 @@ name: Android CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "master" ]
 
 jobs:
   build:
@@ -25,7 +25,7 @@ jobs:
       run: chmod +x gradlew
     
     - name: Gradle Build
-      run: ./gradlew assembleRelease --stacktrace --info
+      run: ./gradlew assembleRelease
     
     - name: upload apk
       uses: actions/upload-artifact@v3
