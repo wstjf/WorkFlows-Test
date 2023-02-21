@@ -21,9 +21,11 @@ jobs:
         cache: gradle
 
     - uses: gradle/gradle-build-action@v2
+    - name: gradle assembleRelease
     - run: gradle assembleRelease
     
     - uses: actions/upload-artifact@v3
+    - name: upload apk
         with:
-          name: upload apk
+          name: myapk
           path: app/build/outputs/apk/release/*.apk
