@@ -1,0 +1,54 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    compileSdk 32
+    buildToolsVersion "33.0.0"
+
+    defaultConfig {
+        applicationId "com.example.kotlincompiler"
+        minSdk 23
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    
+    compileOptions {
+		sourceCompatibility JavaVersion.VERSION_1_8
+		targetCompatibility JavaVersion.VERSION_1_8
+	}
+    
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+            excludes += 'DebugProbesKt.bin'
+            excludes += 'kotlin-tooling-metadata.json'
+            pickFirsts += '/kotlin/internal/internal.kotlin_builtins'
+            pickFirsts += '/kotlin/annotation/annotation.kotlin_builtins'
+            pickFirsts += '/kotlin/collections/collections.kotlin_builtins'
+            pickFirsts += '/kotlin/coroutines/coroutines.kotlin_builtins'
+            pickFirsts += '/kotlin/ranges/ranges.kotlin_builtins'
+            pickFirsts += '/kotlin/reflect/reflect.kotlin_builtins'
+            pickFirsts += '/kotlin/kotlin.kotlin_builtins'
+        }
+    }
+	
+	buildFeatures {
+        viewBinding false
+    }
+}
+
+dependencies {
+    implementation ('org.jetbrains.kotlin:kotlin-compiler-embeddable:1.8.10') {
+      exclude module: 'kotlin-stdlib'
+    }
+}
